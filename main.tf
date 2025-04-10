@@ -14,8 +14,8 @@ data "aws_subnets" "selected" {
   }
 
   filter {
-    name   = "tag:Tier"
-    values = [var.subnet_filter["Tier"]]
+    name   = "tag:eksctl.cluster.k8s.io/v1alpha1/cluster-name"
+    values = [var.cluster_name]
   }
 }
 

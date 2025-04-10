@@ -1,7 +1,7 @@
 variable "region" {
   description = "a variable of type string"
   type        = string
-  default     = null
+  default     = "us-east-1"
 }
 
 variable "vpc_id" {
@@ -16,10 +16,10 @@ variable "allowed_cidrs" {
   default     = null
 }
 
-variable "subnet_filter" {
-  description = "Map of tags to filter subnets (e.g. { Tier = 'private' })"
-  type        = map(string)
-  default     = {}
+variable "cluster_name" {
+  description = "Name of the Redshift cluster"
+  type        = string
+  default     = "prod-eks-tenforty"
 }
 
 ## Basic Cluster Configuration
