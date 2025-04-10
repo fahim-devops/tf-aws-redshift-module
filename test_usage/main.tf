@@ -3,8 +3,9 @@ module "redshift" {
 
   ## Required variables
   region                   = "us-east-1"
-  vpc_id                   = "vpc-056a94ccc0e3dacfc"
-  allowed_cidrs            = ["192.168.0.0/16"]
+  subnet_ids               = ["subnet-056586184e6ef0b4f", "subnet-02899542eded84d62"]
+#   vpc_id                   = "vpc-056a94ccc0e3dacfc"
+#   allowed_cidrs            = ["192.168.0.0/16"]
   cluster_identifier       = "my-redshift-cluster"
   parameter_group_name     = "my-redshift-parameter-group"
   node_type                = "dc2.large"

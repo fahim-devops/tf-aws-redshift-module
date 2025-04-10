@@ -7,17 +7,17 @@ data "aws_iam_session_context" "current" {
 }
 
 ## Fetch Subnet IDs using data
-data "aws_subnets" "selected" {
-  filter {
-    name   = "vpc-id"
-    values = [var.vpc_id]
-  }
+# data "aws_subnets" "selected" {
+#   filter {
+#     name   = "vpc-id"
+#     values = [var.vpc_id]
+#   }
 
-  filter {
-    name   = "tag:eksctl.cluster.k8s.io/v1alpha1/cluster-name"
-    values = [var.cluster_name]
-  }
-}
+#   filter {
+#     name   = "tag:Tier"
+#     values = [var.subnet_filter["Tier"]]
+#   }
+# }
 
 ## Optional Parameter Group for Redshift Cluster
 resource "aws_redshift_parameter_group" "this" {
@@ -60,7 +60,7 @@ name        = "redshift-sg"
 resource "aws_redshift_subnet_group" "this" {
   name       = var.subnet_group_name
   description = var.subnet_group_description
-  subnet_ids = data.aws_subnets.selected.ids
+  subnet_ids = var.subnet_ids
   tags       = var.tags
 }
 

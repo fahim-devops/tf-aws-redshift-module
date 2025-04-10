@@ -4,17 +4,17 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "vpc_id" {
-  description = "VPC ID where the Redshift cluster will be created"
-  type        = string
-  default     = null
-}
+# variable "vpc_id" {
+#   description = "VPC ID where the Redshift cluster will be created"
+#   type        = string
+#   default     = null
+# }
 
-variable "allowed_cidrs" {
-  description = "values for the cidr blocks"
-  type        = list(string)
-  default     = null
-}
+# variable "allowed_cidrs" {
+#   description = "values for the cidr blocks"
+#   type        = list(string)
+#   default     = null
+# }
 
 variable "cluster_name" {
   description = "Name of the Redshift cluster"
@@ -76,10 +76,10 @@ variable "vpc_security_group_ids" {
   default     = []
 }
 
-# variable "subnet_ids" {
-#   description = "List of subnet IDs for the subnet group"
-#   type        = list(string)
-# }
+variable "subnet_ids" {
+  description = "List of subnet IDs for the subnet group"
+  type        = list(string)
+}
 
 variable "subnet_group_name" {
   description = "Name of the Redshift subnet group"
