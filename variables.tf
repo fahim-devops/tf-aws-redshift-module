@@ -16,6 +16,12 @@ variable "allowed_cidrs" {
   default     = null
 }
 
+variable "subnet_filter" {
+  description = "Map of tags to filter subnets (e.g. { Tier = 'private' })"
+  type        = map(string)
+  default     = {}
+}
+
 ## Basic Cluster Configuration
 
 variable "cluster_identifier" {

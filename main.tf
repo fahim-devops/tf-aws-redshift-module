@@ -20,17 +20,16 @@ data "aws_subnets" "selected" {
 }
 
 ## Optional Parameter Group for Redshift Cluster
-resource "aws_redshift_cluster_parameter_group" "this" {
-  count       = var.create_parameter_group ? 1 : 0
-  name        = var.parameter_group_name
-  family      = var.parameter_group_family
-  description = var.parameter_group_description
+resource "aws_redshift_parameter_group" "this" {
+  name   = var.parameter_group_name
+  family = var.parameter_group_family
 
   parameter {
-    for_each = var.parameter_group_parameters
-    name     = each.key
-    value    = each.value
+    name  = "enable_user_activity_logging"
+    value = "true"
   }
+
+  tags = var.tags
 }
 
 ## Security Group for Redshift Cluster
@@ -88,8 +87,6 @@ resource "aws_redshift_cluster" "this" {
   skip_final_snapshot          = var.skip_final_snapshot
   final_snapshot_identifier    = var.skip_final_snapshot ? null : var.final_snapshot_identifier
   tags                         = var.tags
-
-  prevent_destroy             = var.prevent_destroy
 
   depends_on = [ aws_redshift_subnet_group.this, aws_security_group.redshift_sg ]
 }

@@ -13,6 +13,9 @@ module "redshift" {
   port                     = 5439
   iam_roles                = ["arn:aws:iam::123456789012:role/MyRedshiftRole"]
   encrypted                = true
+  subnet_filter = {
+  Tier = "private"
+}
   # kms_key_id               = "arn:aws:kms:us-east-1:123456789012:key/abcd1234-abcd-1234-abcd-1234567890ab"
 
   ## Networking (must exist already)
