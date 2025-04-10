@@ -6,6 +6,7 @@ module "redshift" {
   vpc_id                   = "vpc-60fc981d"
   allowed_cidrs            = ["172.31.0.0/16"]
   cluster_identifier       = "my-redshift-cluster"
+  parameter_group_name     = "my-redshift-parameter-group"
   node_type                = "dc2.large"
   master_username          = "admin"
   master_password          = "YourStrongPassword1!"
@@ -15,7 +16,7 @@ module "redshift" {
   encrypted                = true
   subnet_filter = {
   Tier = "private"
-}
+  }
   # kms_key_id               = "arn:aws:kms:us-east-1:123456789012:key/abcd1234-abcd-1234-abcd-1234567890ab"
 
   ## Networking (must exist already)
